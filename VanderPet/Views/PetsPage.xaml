@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VanderPet.Views.PetsPage"
+             BackgroundColor="#FFF9F3">
+
+	<Grid RowDefinitions="Auto, *">
+		<!-- Cabeçalho -->
+		<VerticalStackLayout Grid.Row="0" Padding="20,40,20,20" Spacing="5">
+			<Label Text="Meus Pets" FontSize="26" FontAttributes="Bold" TextColor="#D96C24"/>
+			<Label Text="Gerencie os dados dos seus companheiros." FontSize="14" TextColor="#738078" />
+		</VerticalStackLayout>
+
+		<!-- Lista de Pets -->
+		<ScrollView Grid.Row="1" Padding="20,0,20,40">
+			<VerticalStackLayout x:Name="vslListaPets" Spacing="15">
+				<BindableLayout.ItemTemplate>
+					<DataTemplate>
+						<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" Padding="15" StrokeShape="RoundRectangle 14">
+							<Grid ColumnDefinitions="*, Auto">
+
+								<!-- Dados do Pet -->
+								<VerticalStackLayout Grid.Column="0" Spacing="2">
+									<Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="18" TextColor="#26352F"/>
+									<Label Text="{Binding Especie.Especie}" TextColor="#738078" FontSize="14"/>
+								</VerticalStackLayout>
+
+								<!-- Botões de Ação -->
+								<HorizontalStackLayout Grid.Column="1" Spacing="10" VerticalOptions="Center">
+									<!-- Botão Editar -->
+									<Border Stroke="#F0C49E" StrokeThickness="1" BackgroundColor="#FFF3E8" Padding="10,5" StrokeShape="RoundRectangle 4">
+										<Label Text="Editar" TextColor="#D96C24" FontAttributes="Bold" FontSize="12"/>
+										<Border.GestureRecognizers>
+											<TapGestureRecognizer Tapped="OnEditarTapped" CommandParameter="{Binding}" />
+										</Border.GestureRecognizers>
+									</Border>
+
+									<!-- Botão Excluir -->
+									<Border Stroke="#D9534F" StrokeThickness="1" BackgroundColor="#FDF2F2" Padding="10,5" StrokeShape="RoundRectangle 4">
+										<Label Text="Excluir" TextColor="#D9534F" FontAttributes="Bold" FontSize="12"/>
+										<Border.GestureRecognizers>
+											<TapGestureRecognizer Tapped="OnExcluirTapped" CommandParameter="{Binding}" />
+										</Border.GestureRecognizers>
+									</Border>
+								</HorizontalStackLayout>
+
+							</Grid>
+						</Border>
+					</DataTemplate>
+				</BindableLayout.ItemTemplate>
+			</VerticalStackLayout>
+		</ScrollView>
+	</Grid>
+</ContentPage>

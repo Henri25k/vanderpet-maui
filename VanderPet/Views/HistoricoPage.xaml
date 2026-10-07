@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VanderPet.Views.HistoricoPage"
+             xmlns:models="clr-namespace:VanderPet.Models"
+             BackgroundColor="#FFF9F3"
+             Title="Meus Agendamentos"
+             Shell.NavBarIsVisible="False" 
+             NavigationPage.HasNavigationBar="False">
+
+	<VerticalStackLayout Padding="20,40,20,0" Spacing="20">
+
+		<!-- Título customizado que você já possui, por isso não precisamos da barra preta -->
+		<Label Text="Agendamentos" FontSize="26" FontAttributes="Bold" TextColor="#D96C24"/>
+
+		<Button Text="+ Novo Agendamento" 
+                BackgroundColor="#D96C24" 
+                TextColor="White" 
+                FontAttributes="Bold" 
+                CornerRadius="14" 
+                HeightRequest="50" 
+                Clicked="OnNovoAgendamentoClicked"/>
+
+		<CollectionView ItemsSource="{Binding ListaAgendamentos}">
+			<CollectionView.ItemTemplate>
+				<DataTemplate x:DataType="models:Agendamento">
+					<Border Stroke="#E1E8DF" BackgroundColor="#FFFFFF" Padding="15" StrokeShape="RoundRectangle 14" Margin="0,0,0,15">
+						<VerticalStackLayout Spacing="5">
+							<Grid ColumnDefinitions="*, Auto">
+								<Label Grid.Column="0" Text="{Binding Pet.Nome}" FontAttributes="Bold" FontSize="18" TextColor="#26352F"/>
+								<Label Grid.Column="1" Text="{Binding Status}" TextColor="#3A9D5D" FontAttributes="Bold" FontSize="12" VerticalOptions="Center"/>
+							</Grid>
+							<Label Text="{Binding Servico.Servico}" TextColor="#738078" FontSize="14"/>
+							<HorizontalStackLayout Spacing="10" Margin="0,5,0,0">
+								<Label Text="{Binding Data, StringFormat='📅 {0:dd/MM/yyyy}'}" TextColor="#D96C24" FontAttributes="Bold" FontSize="14"/>
+								<Label Text="{Binding Horario, StringFormat='⏰ {0:hh\\:mm}'}" TextColor="#D96C24" FontAttributes="Bold" FontSize="14"/>
+							</HorizontalStackLayout>
+						</VerticalStackLayout>
+					</Border>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+
+			<CollectionView.EmptyView>
+				<VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Margin="0,40,0,0">
+					<Label Text="Você ainda não possui agendamentos." TextColor="#738078" FontSize="16" HorizontalTextAlignment="Center"/>
+				</VerticalStackLayout>
+			</CollectionView.EmptyView>
+		</CollectionView>
+
+	</VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VanderPet.Views.CadastroPetPage"
+             BackgroundColor="#FFF9F3">
+
+	<ScrollView>
+		<VerticalStackLayout Padding="30,40,30,40" Spacing="20">
+
+			<VerticalStackLayout Spacing="5" Margin="0,0,0,10">
+				<Label x:Name="lblTitulo" Text="Novo Pet" FontSize="28" FontAttributes="Bold" TextColor="#D96C24" />
+				<Label x:Name="lblSubtitulo" Text="Conte-nos um pouco sobre o seu companheiro." FontSize="14" TextColor="#738078" />
+			</VerticalStackLayout>
+
+			<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,0">
+				<Entry x:Name="entNome" Placeholder="Nome do pet" TextColor="#26352F" />
+			</Border>
+
+			<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,0">
+				<Picker x:Name="pckEspecie" Title="Selecione a Espécie" ItemDisplayBinding="{Binding Especie}" TextColor="#26352F" SelectedIndexChanged="OnEspecieChanged"/>
+			</Border>
+
+			<Border x:Name="brdRaca" IsVisible="False" Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,0">
+				<Picker x:Name="pckRaca" Title="Selecione a Raça" ItemDisplayBinding="{Binding Raca}" TextColor="#26352F"/>
+			</Border>
+
+			<!-- Grid Reorganizado: Sexo e Nascimento -->
+			<Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+				<VerticalStackLayout Grid.Column="0" Spacing="5">
+					<Label Text="Sexo" FontSize="12" TextColor="#738078" />
+					<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,0">
+						<Picker x:Name="pckSexo" Title="Selecione" TextColor="#26352F">
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>Macho</x:String>
+									<x:String>Fêmea</x:String>
+									<x:String>Não informado</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
+					</Border>
+				</VerticalStackLayout>
+
+				<VerticalStackLayout Grid.Column="1" Spacing="5">
+					<Label Text="Nascimento" FontSize="12" TextColor="#738078" />
+					<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,0">
+						<DatePicker x:Name="dtpNascimento" Format="dd/MM/yyyy" TextColor="#26352F" />
+					</Border>
+				</VerticalStackLayout>
+			</Grid>
+
+			<!-- Peso agora fica sozinho -->
+			<VerticalStackLayout Spacing="5">
+				<Label Text="Peso (kg)" FontSize="12" TextColor="#738078" />
+				<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,0">
+					<Entry x:Name="entPeso" Placeholder="Ex: 5.5" Keyboard="Numeric" TextColor="#26352F" />
+				</Border>
+			</VerticalStackLayout>
+
+			<Border Stroke="#E1E8DF" StrokeThickness="1" BackgroundColor="#FFFFFF" StrokeShape="RoundRectangle 14" Padding="10,5">
+				<Editor x:Name="edtObservacoes" Placeholder="Alguma observação importante?" HeightRequest="80" TextColor="#26352F" />
+			</Border>
+
+			<VerticalStackLayout Spacing="15" Margin="0,20,0,0">
+				<Button Text="SALVAR PET" BackgroundColor="#D96C24" TextColor="White" FontAttributes="Bold" CornerRadius="14" HeightRequest="50" Clicked="OnSalvarClicked"/>
+				<Button Text="CANCELAR" BackgroundColor="Transparent" TextColor="#738078" FontAttributes="Bold" Clicked="OnCancelarClicked"/>
+			</VerticalStackLayout>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>
